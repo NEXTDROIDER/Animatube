@@ -1,3 +1,3 @@
 # Animatube
 Animatube is platform where is can load html , mp4 with animations from tiktok
-["https://nextdroider.github.io/Animatube/](join us)
+join us: https://nextdroider.github.io/Animatube/
