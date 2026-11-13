@@ -1,8 +1,15 @@
 (() => {
   const $ = (id) => document.getElementById(id);
   const state = { videos: [], liked: new Set(JSON.parse(localStorage.getItem("animatube-liked") || "[]")), view: "home", selectedFile: null };
-  const DEFAULT_API_URL = "http://78.154.103.19:12978";
-  const apiBase = () => (localStorage.getItem("animatube-api") || DEFAULT_API_URL).replace(/\/+$/, "");
+  const DEFAULT_API_URL = "https://myapi123456.wispbyte.app";
+  const apiBase = () => {
+    const saved = localStorage.getItem("animatube-api");
+    if (!saved || saved === "http://78.154.103.19:12978" || saved === "https://78.154.103.19:12978") {
+      localStorage.setItem("animatube-api", DEFAULT_API_URL);
+      return DEFAULT_API_URL;
+    }
+    return saved.replace(/\/+$/, "");
+  };
   const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const openModal = id => $(id).classList.add("open");
   const closeModal = id => $(id).classList.remove("open");
