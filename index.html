@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090f">
+  <meta name="description" content="Animatube — платформа для просмотра и публикации HTML-анимаций.">
+  <title>Animatube — HTML Animation Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">A</span><span>anima<span class="brand-light">tube</span></span></a>
+      <div class="side-label">БИБЛИОТЕКА</div>
+      <nav class="nav">
+        <button class="nav-item active" data-view="home"><span>⌂</span> Главная</button>
+        <button class="nav-item" data-view="tiktok"><span>▣</span> TikTok режим</button>
+        <button class="nav-item" data-view="youtube"><span>▶</span> YouTube режим</button>
+        <button class="nav-item" data-view="liked"><span>♡</span> Понравилось</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-label">ТВОРЧЕСТВО</div>
+        <button class="upload-side" id="openUpload"><span>＋</span> Загрузить HTML</button>
+        <div class="sidebar-note"><span class="pulse"></span><span>Animation engine<br><b>Ready to create</b></span></div>
+        <div class="sidebar-footer">ANIMATUBE <span>v1.0</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">A</span> Animatube</div>
+        <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Поиск анимаций..."></label>
+        <div class="top-actions"><span class="online-dot"></span><span class="online-text">Сервис активен</span><button class="icon-button" id="settingsButton" title="Настройки API">⚙</button><button class="avatar">N</button></div>
+      </header>
+
+      <section class="hero" id="hero">
+        <div class="hero-copy"><div class="eyebrow"><span></span> YOUR ANIMATION SPACE</div><h1>Идеи оживают<br><em>в движении.</em></h1><p>Открывай, смотри и делись интерактивными HTML-анимациями.</p><div class="hero-actions"><button class="primary-button" id="heroUpload">＋ Загрузить анимацию</button><button class="ghost-button" id="exploreButton">Исследовать <span>↗</span></button></div></div>
+        <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orb orb-main"><span>A</span></div><div class="orb orb-small"></div><div class="art-spark spark-one">✳</div><div class="art-spark spark-two">✦</div><div class="art-caption">MOTION<br>IS MAGIC</div></div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading"><div><div class="eyebrow muted" id="sectionEyebrow">DISCOVER</div><h2 id="sectionTitle">Популярные анимации</h2></div><div class="section-tools"><span class="result-count" id="resultCount">0 видео</span><button class="filter-button" id="refreshButton">↻ Обновить</button></div></div>
+        <div class="video-grid" id="videoGrid"><div class="empty-state"><div class="empty-icon">✧</div><h3>Загружаем анимации</h3><p>Подключаемся к библиотеке...</p></div></div>
+      </section>
+      <footer class="main-footer"><span>© 2026 Animatube</span><span>Made for motion creators <b>✦</b></span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="uploadModal">
+    <div class="modal">
+      <button class="modal-close" data-close="uploadModal">×</button><div class="eyebrow muted">PUBLISH YOUR WORK</div><h2>Загрузить анимацию</h2><p class="modal-desc">Выбери HTML-файл со своей анимацией. Сервер обработает его и добавит видео в библиотеку.</p>
+      <label class="drop-zone" id="dropZone"><input type="file" id="htmlFile" accept=".html,.htm,text/html" hidden><span class="upload-icon">↑</span><b>Перетащи HTML-файл сюда</b><small>или нажми, чтобы выбрать · до 20 МБ</small><span class="file-name" id="fileName">Файл не выбран</span></label>
+      <div class="upload-progress" id="uploadProgress"><div></div></div><p class="status-message" id="uploadStatus"></p>
+      <button class="primary-button full-button" id="uploadButton" disabled>Загрузить и обработать</button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="settingsModal">
+    <div class="modal settings-modal"><button class="modal-close" data-close="settingsModal">×</button><div class="eyebrow muted">CONNECTION</div><h2>Настройки API</h2><p class="modal-desc">Укажи адрес своего backend-сервера. Настройка сохраняется в этом браузере.</p><label class="field-label" for="apiUrl">API URL</label><input class="text-field" id="apiUrl" type="url" placeholder="https://your-server.example.com"><p class="hint">Например: https://api.example.com — без завершающего слеша.</p><button class="primary-button full-button" id="saveSettings">Сохранить подключение</button><p class="status-message" id="settingsStatus"></p></div>
+  </div>
+
+  <div class="viewer" id="viewer"><button class="viewer-close" id="viewerClose">×</button><video id="viewerVideo" controls playsinline></video><div class="viewer-info" id="viewerInfo"></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
